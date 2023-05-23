@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+nav ul a.active{
+    color: #EEFF25;
+}
+
+.featured-item{
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../src/assets/home/featured.jpg) fixed;
+}
+
+.about-img{
+    height: 550px;
+    background: url(../src/assets/home/chef-service.jpg) fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
