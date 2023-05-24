@@ -7,10 +7,16 @@ import Recommends from '../Recommends/Recommends';
 import CallUs from '../CallUs/CallUs';
 import Featured from '../Featured/Featured';
 import Testimonials from '../Testimonials/Testimonials';
+import HelmetCompo from '../../../Components/Helmet/HelmetCompo';
+
+
+
 
 const Home = () => {
     return (
         <div>
+            <HelmetCompo title={'Bistro Boss | Home'}></HelmetCompo>
+            
             {/* Banner section */}
             <Banner/>
 
