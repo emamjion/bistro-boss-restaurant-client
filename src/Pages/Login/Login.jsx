@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import loginImg from '../../assets/others/authentication2.png';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../providers/AuthProvider';
+import { Link } from 'react-router-dom';
 const Login = () => {
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
+    const { signIn } = useContext(AuthContext);
     
     useEffect(() => {
         loadCaptchaEnginge(6); 
@@ -15,6 +18,17 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        signIn(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            form.reset();
+        })
+        .catch(error => {
+            console.error(error.message);
+        })
+
     }
 
     const handleCaptcha = () => {
@@ -53,11 +67,14 @@ const Login = () => {
                                 <LoadCanvasTemplate />
                             </label>
                             <input type="text" ref={captchaRef} placeholder="Type Captcha" name='captcha' className="input input-bordered" />
-                            <button onClick={handleCaptcha} className='btn btn-outline btn-xs mt-3'>Validate</button>
+                            <button onClick={handleCaptcha} className='px-4 py-2 bg-orange-300 w-[100px] rounded font-medium mt-3'>Validate</button>
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn bg-[#D1A054] border-0 text-xl font-semibold" disabled={disabled} type='submit' value='Login' />
                         </div>
+                        <p className='text-center text-[#D1A054] font-medium'>
+                        New here? <Link className='font-semibold' to='/register'>Create a New Account</Link>
+                        </p>
                     </form>
                 </div>
                 <div className="text-center lg:text-left">
