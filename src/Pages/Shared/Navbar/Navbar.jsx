@@ -18,7 +18,7 @@ const Navbar = () => {
                 <NavLink className='mr-6 text-lg font-medium' to='/contact'>Contact Us</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/dashboard'>Dashboard</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/menu'>Our Menu</NavLink>
-                <NavLink className='mr-6 text-lg font-medium' to='/shop'>Our Shop</NavLink>
+                <NavLink className='mr-6 text-lg font-medium' to='/shop/salad'>Our Shop</NavLink>
                 <NavLink className='inline-block mr-6' to='/cart'> < FaCartArrowDown /> </NavLink>
                 <Link to='/' className=''>
                     <span className='text-lg font-medium'>SIGN IN</span>

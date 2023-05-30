@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MenuItem = ({item}) => {
-    const { image, price, recipe, name } = item;
+    const {  price, recipe, name, image } = item || {};
     return (
         <div className='flex space-x-4'>
             <img style={{borderRadius : '0 200px 200px 200px'}} className='w-[115px] h-[105px]' src={image} />
