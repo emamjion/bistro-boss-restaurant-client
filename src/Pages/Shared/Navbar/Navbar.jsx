@@ -20,7 +20,7 @@ const Navbar = () => {
                 <NavLink className='mr-6 text-lg font-medium' to='/menu'>Our Menu</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/shop/salad'>Our Shop</NavLink>
                 <NavLink className='inline-block mr-6' to='/cart'> < FaCartArrowDown /> </NavLink>
-                <Link to='/' className=''>
+                <Link to='/login' className=''>
                     <span className='text-lg font-medium'>SIGN IN</span>
                     <span className='inline-block ml-2'> < FaUserCircle /> </span>
                 </Link>
