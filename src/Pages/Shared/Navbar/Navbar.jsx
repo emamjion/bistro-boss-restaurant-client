@@ -1,9 +1,21 @@
 import React from 'react';
 import logo from '../../../assets/logo.png';
 import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../providers/AuthProvider';
 import { FaCartArrowDown, FaUserCircle } from "react-icons/fa";
 
+
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {})
+        .catch(error => {
+            console.log(error.message);
+        })
+    }
     return (
         <nav className='fixed z-10 flex items-center justify-between bg-[#15151580] w-[1280px] px-12 py-2 text-white'>
             <div className='flex items-center justify-center gap-3'>
@@ -21,8 +33,15 @@ const Navbar = () => {
                 <NavLink className='mr-6 text-lg font-medium' to='/shop/salad'>Our Shop</NavLink>
                 <NavLink className='inline-block mr-6' to='/cart'> < FaCartArrowDown /> </NavLink>
                 <Link to='/login' className=''>
-                    <span className='text-lg font-medium'>SIGN IN</span>
-                    <span className='inline-block ml-2'> < FaUserCircle /> </span>
+                    {
+                        user ? <>
+                            <span className='mr-3 text-lg font-medium'>{user?.displayName}</span>
+                            <span onClick={handleLogOut} className='text-lg font-medium'>SIGN OUT</span>
+                        </> : <>
+                            <span className='text-lg font-medium'>SIGN IN</span>
+                            <span className='inline-block ml-2'> < FaUserCircle /> </span>
+                        </>
+                    }
                 </Link>
             </ul>
         </nav>
