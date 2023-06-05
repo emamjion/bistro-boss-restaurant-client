@@ -21,3 +21,8 @@ nav ul a.active{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.drawer-side a.active{
+    color: #fff;
+    background: transparent;
+}

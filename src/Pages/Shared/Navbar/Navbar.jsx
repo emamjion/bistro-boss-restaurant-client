@@ -4,11 +4,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaCartArrowDown, FaUserCircle } from "react-icons/fa";
+import useCart from '../../../Hooks/useCart';
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user);
+    const [ cart ] = useCart();
+
     const handleLogOut = () => {
         logOut()
         .then(() => {})
@@ -16,6 +18,9 @@ const Navbar = () => {
             console.log(error.message);
         })
     }
+
+
+
     return (
         <nav className='fixed z-10 flex items-center justify-between bg-[#15151580] w-[1280px] px-12 py-2 text-white'>
             <div className='flex items-center justify-center gap-3'>
@@ -31,7 +36,10 @@ const Navbar = () => {
                 <NavLink className='mr-6 text-lg font-medium' to='/dashboard'>Dashboard</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/menu'>Our Menu</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/shop/salad'>Our Shop</NavLink>
-                <NavLink className='inline-block mr-6' to='/cart'> < FaCartArrowDown /> </NavLink>
+                <NavLink className='inline-block mr-6' to='/dashboard/cart'> 
+                    <span className='inline-block'> < FaCartArrowDown /> </span>
+                    <span className='badge badge-secondary ml-3'>+{cart?.length || 0}</span>
+                </NavLink>
                 <Link to='/login' className=''>
                     {
                         user ? <>

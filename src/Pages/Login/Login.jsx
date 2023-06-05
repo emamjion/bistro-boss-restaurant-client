@@ -22,12 +22,10 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
 
         signIn(email, password)
         .then(result => {
             const loggedUser = result.user;
-            console.log(loggedUser);
 
             Swal.fire({
                 title: 'User Login Successfully',
@@ -80,6 +78,8 @@ const Login = () => {
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
+                        
+                        {/* Todo:  make button disabled for captcha */}
                         <div className="form-control">
                             <label className="label font-medium text-xl">
                                 <LoadCanvasTemplate />
