@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import 'animate.css';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
@@ -92,6 +93,8 @@ const Login = () => {
                         <p className='text-center text-[#D1A054] font-medium'>
                         New here? <Link className='font-semibold' to='/register'>Create a New Account</Link>
                         </p>
+                        {/* social login */}
+                        <SocialLogin/>
                     </form>
                 </div>
                 <div className="text-center lg:text-left">

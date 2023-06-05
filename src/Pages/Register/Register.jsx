@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 
 const Register = () => {
@@ -20,8 +22,33 @@ const Register = () => {
             console.log(loggedUser);
             updateUserProfile(data.name, data.photoURL)
             .then(() => {
-                reset();
-                alert('User profile info updated!');
+                const savedUser = {
+                    name : data.name,
+                    email : data.email,
+                    photo : data.photoURL
+                }
+                fetch('http://localhost:5000/users', {
+                    method : 'POST',
+                    headers: {
+                        'content-type' : 'application/json'
+                    },
+                    body: JSON.stringify(savedUser)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.insertedId){
+                        reset();
+                
+                        Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'User created successfully!',
+                        showConfirmButton: false,
+                        timer: 1500
+                        })
+                    }
+                })
+
                 navigate('/');
             })
             .catch(error => console.log(error.message))
@@ -73,6 +100,8 @@ const Register = () => {
                             <p className='text-center text-[#D1A054] font-medium'>
                                 Already registered? <Link className='font-semibold' to='/login'>Go to Login</Link>
                             </p>
+                            {/* social login */}
+                            <SocialLogin/>
                         </form>
                         
                     </div>
