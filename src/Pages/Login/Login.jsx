@@ -88,7 +88,7 @@ const Login = () => {
                             <input onBlur={handleCaptcha} type="text" placeholder="Type Captcha" name='captcha' className="input input-bordered" />
                         </div>
                         <div className="form-control mt-6">
-                            <input className="btn bg-[#D1A054] border-0 text-xl font-semibold" disabled={disabled} type='submit' value='Login' />
+                            <input className="btn bg-[#D1A054] border-0 text-xl font-semibold" disabled={false} type='submit' value='Login' />
                         </div>
                         <p className='text-center text-[#D1A054] font-medium'>
                         New here? <Link className='font-semibold' to='/register'>Create a New Account</Link>

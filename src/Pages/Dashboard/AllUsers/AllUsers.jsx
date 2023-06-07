@@ -3,11 +3,18 @@ import React from 'react';
 import HelmetCompo from '../../../Components/Helmet/HelmetCompo';
 import { FaTrashAlt, FaUserTie } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const AllUsers = () => {
+    // step : 01 - axios secure ta import korte hobe
+    const [ axiosSecure ] = useAxiosSecure();
+    
     const { data : users = [], refetch } = useQuery(['users'], async() => {
-        const res = await fetch('http://localhost:5000/users');
-        return res.json();
+        // step : 02 - added axiosSecure.get against fetch
+        // step : 03 - remove http://localhost:5000 
+        const res = await axiosSecure.get('/users');
+        // step : 04 - res.json() na diye res.data likhte hobe
+        return res.data;
     })
 
     const handleDelete = (user) => {

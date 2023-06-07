@@ -3,13 +3,14 @@ import useAxiosSecure from './useAxiosSecure';
 import useAuth from './useAuth';
 
 const useCart = () => {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
 
     const token = localStorage.getItem('access-token');
     const [axiosSecure] = useAxiosSecure();
 
     const { isLoading, refetch, data : cart = [] } = useQuery({
         queryKey: ['cart', user?.email],
+        enabled: !loading,
         
         /*
         queryFn: async () => {
