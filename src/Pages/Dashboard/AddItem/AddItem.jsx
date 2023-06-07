@@ -2,12 +2,16 @@ import React from 'react';
 import HelmetCompo from '../../../Components/Helmet/HelmetCompo';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import { useForm } from "react-hook-form";
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 
 const img_hosting_token=import.meta.env.VITE_Image_Upload_token;
 
 const AddItem = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [ axiosSecure ] = useAxiosSecure();
+    
+    const { register, handleSubmit, watch, reset } = useForm();
     
     // const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${img_hosting_token}`;
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
@@ -31,7 +35,22 @@ const AddItem = () => {
 
                 const { name, price, category, details } = data;
                 const newMenuItem = { name, price: parseFloat(price), category, details, image: imgURL };
-                console.log(newMenuItem);
+                // console.log(newMenuItem);
+
+                axiosSecure.post('/menu', newMenuItem)
+                .then(data => {
+                    console.log('After posting new menu item', data.data);
+                    if(data.data.insertedId){
+                        reset();
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Item added Successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
             }
         })
 
