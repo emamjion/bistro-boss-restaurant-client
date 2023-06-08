@@ -22,7 +22,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className='fixed z-10 flex items-center justify-between bg-[#15151580] w-[1280px] px-12 py-2 text-white'>
+        <nav className='fixed z-10 flex items-center justify-between bg-[#15151580] w-[1280px] px-10 py-2 text-white'>
             <div className='flex items-center justify-center gap-3'>
                 <img className='w-20 h-20' src={logo} />
                 <div className='mt-6'>

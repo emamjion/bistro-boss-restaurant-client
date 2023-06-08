@@ -3,6 +3,7 @@ import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import HelmetCompo from '../../../Components/Helmet/HelmetCompo';
 import useCart from '../../../Hooks/useCart';
 import MycartTable from './MycartTable';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
     const [ cart, refetch ] = useCart();
@@ -21,7 +22,9 @@ const MyCart = () => {
             <div className='flex items-center justify-between gap-6 mb-6'>
                 <h1 className='text-3xl text-center'>Total items: {cart.length}</h1>
                 <h1 className='text-3xl text-center'>Total Price: {total}</h1>
-                <button className="btn">Pay</button>
+                <Link to='/dashboard/payment'>
+                    <button className="btn">Pay</button>
+                </Link>
             </div>
             
             <div className=''>
