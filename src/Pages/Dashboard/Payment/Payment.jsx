@@ -24,12 +24,14 @@ const Payment = () => {
                 subHeading={'Please procced to Payment'}
                 heading={'Payment'}
             />
-            <Elements stripe={stripePromise}>
-                <CheckOutForm 
-                    price={price}
-                    cart={cart}
-                />
-            </Elements>
+            <div className='px-12'>
+                <Elements stripe={stripePromise}>
+                    <CheckOutForm 
+                        price={price}
+                        cart={cart}
+                    />
+                </Elements>
+            </div>
         </div>
     );
 };

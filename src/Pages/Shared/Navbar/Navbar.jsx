@@ -1,14 +1,15 @@
 import React from 'react';
 import logo from '../../../assets/logo.png';
 import { Link, NavLink } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../../providers/AuthProvider';
 import { FaCartArrowDown, FaUserCircle } from "react-icons/fa";
 import useCart from '../../../Hooks/useCart';
+import useAuth from '../../../Hooks/useAuth';
+import useAdmin from '../../../Hooks/useAdmin';
 
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useAuth();
+    const [ isAdmin ] = useAdmin();
     const [ cart ] = useCart();
 
     const handleLogOut = () => {
@@ -33,7 +34,7 @@ const Navbar = () => {
             <ul>
                 <NavLink className='mr-6 text-lg font-medium' to='/'>Home</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/contact'>Contact Us</NavLink>
-                <NavLink className='mr-6 text-lg font-medium' to='/dashboard'>Dashboard</NavLink>
+                <NavLink className='mr-6 text-lg font-medium' to={ isAdmin ? '/dashboard/admin-home' : '/dashboard/user-home' }>Dashboard</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/menu'>Our Menu</NavLink>
                 <NavLink className='mr-6 text-lg font-medium' to='/shop/salad'>Our Shop</NavLink>
                 <NavLink className='inline-block mr-6' to='/dashboard/cart'> 
