@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-    baseURL : 'http://localhost:5000'
+    baseURL : 'https://bistro-boss-restaurant-server-kappa.vercel.app'
 });
 
 const useAxiosSecure = () => {
@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
     
     
     // const axiosSecure = axios.create({
-    //     baseURL : 'http://localhost:5000'
+    //     baseURL : 'https://bistro-boss-restaurant-server-kappa.vercel.app'
     // });
 
     useEffect(() => {

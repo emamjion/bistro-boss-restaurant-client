@@ -11,7 +11,7 @@ const AllUsers = () => {
     
     const { data : users = [], refetch } = useQuery(['users'], async() => {
         // step : 02 - added axiosSecure.get against fetch
-        // step : 03 - remove http://localhost:5000 
+        // step : 03 - remove https://bistro-boss-restaurant-server-kappa.vercel.app 
         const res = await axiosSecure.get('/users');
         // step : 04 - res.json() na diye res.data likhte hobe
         return res.data;
@@ -21,7 +21,7 @@ const AllUsers = () => {
         console.log(user);
     };
     const handleMakeAdmin = (user) => {
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://bistro-boss-restaurant-server-kappa.vercel.app/users/admin/${user._id}`, {
             method : 'PATCH',
         })
         .then(res => res.json())
